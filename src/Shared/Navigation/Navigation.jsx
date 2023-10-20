@@ -7,8 +7,8 @@ export default function Navigation() {
         <li><a>Item 3</a></li>
     </>
   return (
-    <div>
-        <div className="navbar bg-base-100">
+
+  <div className="navbar fixed z-10 bg-opacity-30 bg-black max-w-screen-xl text-white">
   <div className="navbar-start">
     <div className="dropdown">
       <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -18,7 +18,7 @@ export default function Navigation() {
         {navMenus}
       </ul>
     </div>
-    <a className="btn btn-ghost normal-case text-xl">daisyUI</a>
+    <a className="btn btn-ghost normal-case text-xl">BISTRO BOSS</a>
   </div>
   <div className="navbar-center hidden lg:flex">
     <ul className="menu menu-horizontal px-1">
@@ -29,6 +29,6 @@ export default function Navigation() {
     <a className="btn">Button</a>
   </div>
 </div>
-    </div>
+
   )
 }
