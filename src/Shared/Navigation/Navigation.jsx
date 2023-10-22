@@ -1,14 +1,17 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 export default function Navigation() {
 
     const navMenus = <>
-        <li><a>Item 1</a></li>
-        <li><a>Item 3</a></li>
+        <li><Link to='/'>HOME</Link></li>
+        <li><Link to='/menu'>OUR MENU</Link></li>
+        <li><Link to='/order'>ORDER FOOD</Link></li>
+        
     </>
   return (
 
-  <div className="navbar fixed z-10 bg-opacity-30 bg-black max-w-screen-xl text-white">
+  <div className="navbar fixed z-10 bg-opacity-10 bg-black max-w-screen-xl text-white">
   <div className="navbar-start">
     <div className="dropdown">
       <label tabIndex={0} className="btn btn-ghost lg:hidden">
