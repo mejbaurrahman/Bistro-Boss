@@ -1,6 +1,8 @@
 import React from 'react'
-import useMenu from '../../../Hooks/useMenu'
+
 import HeadingTitle from '../../../Components/HeadingTitle/HeadingTitle';
+import { Link } from 'react-router-dom';
+import useMenu from '../../../Hooks/useMenu';
 
 
 export default function MenuCategory({heading, subHeading, category}) {
@@ -34,7 +36,7 @@ export default function MenuCategory({heading, subHeading, category}) {
         </div>
 
         <div className='text-center'>
-             <button className='uppercase btn btn-warning'>View full now</button>
+             <Link to={`/order/${category}`}><button className='uppercase btn btn-warning'>View full now</button></Link>
         </div>
 
     </div>

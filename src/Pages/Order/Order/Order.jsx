@@ -5,16 +5,20 @@ import { Helmet } from 'react-helmet-async';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 
-import useMenu from '../../../Hooks/useMenu';
-import FoodCard from '../../../Components/FoodCard/FoodCard';
 import OrderTab from '../OrderTab/OrderTab';
+import { useParams } from 'react-router-dom';
+import useMenu from '../../../Hooks/useMenu';
 
 export default function Order() {
-    
-    const [tabIndex, setTabIndex] = useState(0);
-    const [menu, loadings] = useMenu();
+  const [menu, loading] = useMenu()
+    const categories = ['salad','pizza','soup','dessert','drinks']
+    const {category} = useParams()
 
+    const initalIndex = categories.indexOf(category)
+    const [tabIndex, setTabIndex] = useState(initalIndex);
+  
     const saladMenu = menu.filter(item => item.category ==='salad')
+    
     const soupMenu = menu.filter(item => item.category ==='soup')
     const dessertMenu = menu.filter(item => item.category ==='dessert')
     const pizzaMenu = menu.filter(item => item.category ==='pizza')
@@ -38,19 +42,19 @@ export default function Order() {
         <Tab>DRINKS</Tab>
       </TabList>
       <TabPanel>
-        <OrderTab menu={saladMenu}></OrderTab>
+        <OrderTab items={saladMenu}></OrderTab>
       </TabPanel>
       <TabPanel>
-      <OrderTab menu={pizzaMenu}></OrderTab>
+      <OrderTab items={pizzaMenu}></OrderTab>
       </TabPanel>
       <TabPanel>
-      <OrderTab menu={soupMenu}></OrderTab>
+      <OrderTab items={soupMenu}></OrderTab>
       </TabPanel>
       <TabPanel>
-      <OrderTab menu={dessertMenu}></OrderTab>
+      <OrderTab items={dessertMenu}></OrderTab>
       </TabPanel>
       <TabPanel>
-      <OrderTab menu={drinkMenu}></OrderTab>
+      <OrderTab items={drinkMenu}></OrderTab>
       </TabPanel>
       
     </Tabs>
