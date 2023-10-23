@@ -8,7 +8,7 @@ const auth = getAuth(app);
 
 
 export default function AuthProvider({children}) {
-  const [user, setUser] = useState({});
+  const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
   const createUser = (email, password)=>{
@@ -21,24 +21,36 @@ export default function AuthProvider({children}) {
     return signInWithEmailAndPassword(auth, email, password)
   }
 
-  const signOutUser = ()=>{
+  const logOut = ()=>{
     setLoading(true);
     return signOut(auth)
   } 
 
-  const updateProfile = (name, photo)=>{
+  const updateUserProfile = (name, photo)=>{
     setLoading(true);
     return updateProfile(auth.currentUser, {
       displayName: name,
       photoURL: photo
     })
   }
+
+  useEffect(()=>{
+    const unsubscribe = onAuthStateChanged(auth, currentUser=>{
+      
+      setUser(currentUser);
+      setLoading(false);
+    })
+
+    return ()=>{
+     return unsubscribe();
+    }
+  }, [])
   const authInfo= {
     user, loading, 
     createUser,
     signIn, 
-    signOutUser, 
-    updateProfile
+    logOut, 
+    updateUserProfile
 
   }
 
